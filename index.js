@@ -8,7 +8,7 @@ const Box = require("cli-box");
 
 // If no arguments are supplied, exit and display suggested use
 if (process.argv.length <= 2) {
-  console.log("Usage: " + __filename +
+  console.log("Error! Usage: " + __filename +
     " <whatever you would like to ask the duck>");
   process.exit(-1);
 }
@@ -18,7 +18,6 @@ let requestString = '';
 for (let i = 2; i < process.argv.length; i++) {
   requestString += process.argv[i] + ' ';
 }
-console.log(requestString);
 
 // Submit request to DuckDuckGo Instant, then handle results
 requester.request(requestString, (err, response, body) => {
