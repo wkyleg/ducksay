@@ -1,5 +1,5 @@
 {
-  "name": "ducksay",
+  "name": "ducksay-instant",
   "version": "1.0.0",
   "description": "A rewrite of cowsay using the DuckDuckGo Instant Answer API",
   "main": "index.js",
