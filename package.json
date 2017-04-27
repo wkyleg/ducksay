@@ -1,6 +1,6 @@
 {
   "name": "ducksay-instant",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A rewrite of cowsay using the DuckDuckGo Instant Answer API",
   "main": "index.js",
   "scripts": {
@@ -11,7 +11,10 @@
     "DuckDuckGo"
   ],
   "author": "Kyle Graves",
-  "license": "ISC",
+  "license": "GPLv3",
+  "bin": {
+    "ducksay": "./index.js"
+  },
   "dependencies": {
     "cli-box": "^6.0.7",
     "node-duckduckgo": "^1.0.4"
