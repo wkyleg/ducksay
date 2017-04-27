@@ -1,0 +1,19 @@
+{
+  "name": "ducksay",
+  "version": "1.0.0",
+  "description": "A rewrite of cowsay using the DuckDuckGo Instant Answer API",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "cowsay",
+    "DuckDuckGo"
+  ],
+  "author": "Kyle Graves",
+  "license": "ISC",
+  "dependencies": {
+    "cli-box": "^6.0.7",
+    "node-duckduckgo": "^1.0.4"
+  }
+}
