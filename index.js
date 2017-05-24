@@ -1,10 +1,7 @@
 #!/usr/bin/env node
-
 "use strict";
 
-const {
-  Requester
-} = require("node-duckduckgo");
+const { Requester } = require("node-duckduckgo");
 const requester = new Requester("ducksay");
 const Box = require("cli-box");
 
@@ -15,7 +12,7 @@ if (process.argv.length <= 2) {
   process.exit(-1);
 }
 
-// Create string for requester from comand line arguments
+// Create string for requester from command line arguments
 let requestString = '';
 for (let i = 2; i < process.argv.length; i++) {
   requestString += process.argv[i] + ' ';
@@ -34,7 +31,7 @@ requester.request(requestString, (err, response, body) => {
     answer = "Sorry, don't know anything about that!"
   }
 
-  // create small message box which will expand with size of reponce
+  // create small message box which will expand with size of response
   const messageBox = Box("2x2", {
     text: answer,
     stretch: true,
@@ -43,7 +40,7 @@ requester.request(requestString, (err, response, body) => {
     hAlign: "left"
   });
 
-  // Print reponce, then duck
+  // Print response, then duck
   console.log(messageBox);
   console.log(duckImage);
 });
@@ -51,7 +48,7 @@ requester.request(requestString, (err, response, body) => {
 
 // ANCI art of duck to print
 const duckImage =
-  `
+`
             \\
              \\
               \\
