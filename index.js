@@ -5,6 +5,27 @@ const { Requester } = require("node-duckduckgo");
 const requester = new Requester("ducksay");
 const Box = require("cli-box");
 
+// ANCI art of duck to print
+const duckImage =
+`            \\
+             \\
+              \\
+               \\             ▒▒▒▒▒
+                \\         ▒▒▒▒▒░░▒▒
+                 \\      ▓▒ ░░░░░░░▒
+                     ▓▓▓▒▒▓▒▒▒▒░░░░▒▒
+                       ▓▓▓▓▓▒▒▒░░░▒▒           ▒
+                           ▓▒▒▒▒▒▒▒          ▓▓▒
+                          ▒▒▒▒▒▒▒░▒▒▒▒▒▒▒▒▒▒▒▒▒░
+                         ▒▒▒▒▒░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+                        ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░▒▒▒░▒
+                       ▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░░▒▒
+                       ▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+                        ▓▒▒▒▒▒▒▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+                           ▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
+`;
+
+
 // If no arguments are supplied, exit and display suggested use
 if (process.argv.length <= 2) {
   console.log("Error! Usage: " + __filename +
@@ -12,13 +33,15 @@ if (process.argv.length <= 2) {
   process.exit(-1);
 }
 
-// Create string for requester from command line arguments
+// Create string for requester from command line arguments. All arguments are
+// concatenated into one string with spaces in between, as was done in cowsay.
 let requestString = '';
 for (let i = 2; i < process.argv.length; i++) {
   requestString += process.argv[i] + ' ';
 }
 
-// Submit request to DuckDuckGo Instant, then handle results
+// Submit "requestString" to DuckDuckGo Instant, then handle results. Response 
+// text is printed via "cli-box" module, then the duck is printed.
 requester.request(requestString, (err, response, body) => {
   if (err) {
     console.log(err);
@@ -46,23 +69,3 @@ requester.request(requestString, (err, response, body) => {
 });
 
 
-// ANCI art of duck to print
-const duckImage =
-`
-            \\
-             \\
-              \\
-               \\             ▒▒▒▒▒
-                \\         ▒▒▒▒▒░░▒▒
-                 \\      ▓▒ ░░░░░░░▒
-                     ▓▓▓▒▒▓▒▒▒▒░░░░▒▒
-                       ▓▓▓▓▓▒▒▒░░░▒▒           ▒
-                           ▓▒▒▒▒▒▒▒          ▓▓▒
-                          ▒▒▒▒▒▒▒░▒▒▒▒▒▒▒▒▒▒▒▒▒░
-                         ▒▒▒▒▒░░░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒
-                        ▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░▒▒▒░▒
-                       ▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░░░▒▒
-                       ▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
-                        ▓▒▒▒▒▒▒▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
-                           ▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
-`;
