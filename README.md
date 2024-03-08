@@ -2,8 +2,10 @@
 
 ![An example use][logo]
 
+[logo]: https://github.com/wkyleg/ducksay/blob/master/ducksay-screenshot.png?raw=true "Example usage"
+
 ## Introduction
-**Ducksay Instant** brings the whimsy of the traditional `cowsay` utility into the modern era, leveraging the DuckDuckGo Instant Answer API. This novel twist allows your terminal's duck to do more than merely echo your input; it attempts to provide a concise answer to your queries. Whether you're looking for quick facts, definitions, or just a bit of terminal fun, Ducksay Instant is here to quack you up!
+**Ducksay Instant** brings the whimsy of unix utilities like [cowsay](https://en.wikipedia.org/wiki/Cowsay#:~:text=cowsay%20is%20a%20program%20that,the%20Penguin%2C%20the%20Linux%20mascot.) and [fortune](https://en.wikipedia.org/wiki/Fortune_(Unix)) into the modern era, leveraging the DuckDuckGo Instant Answer API. This novel twist allows your terminal's duck to do more than merely echo your input; it attempts to provide a concise answer to your queries. Whether you're looking for quick facts, definitions, or just a bit of terminal fun, Ducksay Instant is here to quack you up!
 
 ## Motivation
 The motivation behind Ducksay Instant was to blend the charm of terminal-based ASCII art utilities with the functionality of modern APIs. It's a nod to the playful side of programming, while also offering a unique utility for fetching quick answers straight from your terminal.
