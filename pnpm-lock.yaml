@@ -1,0 +1,107 @@
+lockfileVersion: '6.0'
+
+settings:
+  autoInstallPeers: true
+  excludeLinksFromLockfile: false
+
+dependencies:
+  cli-box:
+    specifier: ^6.0.7
+    version: 6.0.10
+  node-duckduckgo:
+    specifier: ^1.0.4
+    version: 1.22.5
+
+packages:
+
+  /ansi-parser@3.2.10:
+    resolution: {integrity: sha512-CGKGIbd678lm15IXJXI1cTyOVAnMQw0jES+klW/yIc+GzYccsYanLMhczPIIj2hE64B79g75QfiuWrEWd6nJdg==}
+    dev: false
+
+  /axios@0.19.2:
+    resolution: {integrity: sha512-fjgm5MvRHLhx+osE2xoekY70AhARk3a6hkN+3Io1jc00jtquGvxYlKlsFUhmUET0V5te6CcZI7lcv2Ym61mjHA==}
+    deprecated: Critical security vulnerability fixed in v0.21.1. For more information, see https://github.com/axios/axios/pull/3410
+    dependencies:
+      follow-redirects: 1.5.10
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
+  /cli-box@6.0.10:
+    resolution: {integrity: sha512-6jjSF6G1gOXaCyBQJKo3L3lZKxP8jzdECG7FBiA4m2w7K8jBxXXwsMb75fBLwoVwOtKwvgKjLJurw8HU5XNciw==}
+    dependencies:
+      ansi-parser: 3.2.10
+      deffy: 2.2.4
+      is-undefined: 1.0.11
+      is-win: 1.0.10
+      ul: 5.2.15
+    dev: false
+
+  /debug@3.1.0:
+    resolution: {integrity: sha512-OX8XqP7/1a9cqkxYw2yXss15f26NKWBpDXQd0/uK/KPqdQhxbPa994hnzjcE2VqQpDslf55723cKPUOGSmMY3g==}
+    peerDependencies:
+      supports-color: '*'
+    peerDependenciesMeta:
+      supports-color:
+        optional: true
+    dependencies:
+      ms: 2.0.0
+    dev: false
+
+  /deffy@2.2.4:
+    resolution: {integrity: sha512-pLc9lsbsWjr6RxmJ2OLyvm+9l4j1yK69h+TML/gUit/t3vTijpkNGh8LioaJYTGO7F25m6HZndADcUOo2PsiUg==}
+    dependencies:
+      typpy: 2.3.13
+    dev: false
+
+  /follow-redirects@1.5.10:
+    resolution: {integrity: sha512-0V5l4Cizzvqt5D44aTXbFZz+FtyXV1vrDN6qrelxtfYQKW0KO0W2T/hkE8xvGa/540LkZlkaUjO4ailYTFtHVQ==}
+    engines: {node: '>=4.0'}
+    dependencies:
+      debug: 3.1.0
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
+  /function.name@1.0.13:
+    resolution: {integrity: sha512-mVrqdoy5npWZyoXl4DxCeuVF6delDcQjVS9aPdvLYlBxtMTZDR2B5GVEQEoM1jJyspCqg3C0v4ABkLE7tp9xFA==}
+    dependencies:
+      noop6: 1.0.9
+    dev: false
+
+  /is-undefined@1.0.11:
+    resolution: {integrity: sha512-gRwyH8IRpV73MDlVefPllIjxBjrP9YAB0YCLtxnROhRkedTSzzBJgfxTC6HgP2/dttawQHWNZe88MvXS9Hbn/g==}
+    dev: false
+
+  /is-win@1.0.10:
+    resolution: {integrity: sha512-tJ9PPj5RW2RUaZ2lAIVRqQjMSynA44Ln89h+Ue+pOecoWIv6dLHvN6dtLxeCi/h5epPJPSVyuaNObLAMq62OEA==}
+    dev: false
+
+  /ms@2.0.0:
+    resolution: {integrity: sha512-Tpp60P6IUJDTuOq/5Z8cdskzJujfwqfOTkrwIwj7IRISpnkJnT6SyJ4PCPnGMoFjC9ddhal5KVIYtAt97ix05A==}
+    dev: false
+
+  /node-duckduckgo@1.22.5:
+    resolution: {integrity: sha512-n6JuuG1oAKpYdi2Bdn7mw7ghLEmqDUb+jhpvF3haB5feFvaMs2QA0mYy6aN6Ks9V2Sr3od4m3ytzixoF8PGyCQ==}
+    dependencies:
+      axios: 0.19.2
+    transitivePeerDependencies:
+      - supports-color
+    dev: false
+
+  /noop6@1.0.9:
+    resolution: {integrity: sha512-DB3Hwyd89dPr5HqEPg3YHjzvwh/mCqizC1zZ8vyofqc+TQRyPDnT4wgXXbLGF4z9YAzwwTLi8pNLhGqcbSjgkA==}
+    dev: false
+
+  /typpy@2.3.13:
+    resolution: {integrity: sha512-vOxIcQz9sxHi+rT09SJ5aDgVgrPppQjwnnayTrMye1ODaU8gIZTDM19t9TxmEElbMihx2Nq/0/b/MtyKfayRqA==}
+    dependencies:
+      function.name: 1.0.13
+    dev: false
+
+  /ul@5.2.15:
+    resolution: {integrity: sha512-svLEUy8xSCip5IWnsRa0UOg+2zP0Wsj4qlbjTmX6GJSmvKMHADBuHOm1dpNkWqWPIGuVSqzUkV3Cris5JrlTRQ==}
+    dependencies:
+      deffy: 2.2.4
+      typpy: 2.3.13
+    dev: false

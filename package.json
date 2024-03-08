@@ -1,22 +1,31 @@
 {
   "name": "ducksay-instant",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "A rewrite of cowsay using the DuckDuckGo Instant Answer API",
+  "type": "module",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "scripts": {},
   "keywords": [
     "cowsay",
-    "DuckDuckGo"
+    "DuckDuckGo",
+    "duck say",
+    "instant answers",
+    "terminal fun",
+    "nodejs"
   ],
-  "author": "Kyle Graves",
-  "license": "GPLv3",
+  "author": "W. Kyle Graves",
+  "license": "MIT",
   "bin": {
     "ducksay": "./index.js"
   },
   "dependencies": {
-    "cli-box": "^6.0.7",
-    "node-duckduckgo": "^1.0.4"
+    "node-fetch": "^3.0.0"
+  },
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wkyleg/ducksay-instant.git"
   }
 }

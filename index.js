@@ -1,13 +1,20 @@
 #!/usr/bin/env node
-'use strict';
 
-const { Requester } = require('node-duckduckgo');
-const requester = new Requester('ducksay');
-const Box = require('cli-box');
+const USAGE_STRING = `
+Usage: ducksay <query>
+Displays a duck saying the answer to the query using the DuckDuckGo Instant Answers API.
 
-// ANCI art of duck to print
-const duckImage =
-`            \\
+Options:
+  -h, --help    Display this help message and exit.
+
+Example:
+  ducksay who is Satoshi Nakamoto
+
+`;
+
+const DUCKDUCKGO_API_URL = "https://api.duckduckgo.com/";
+
+const duckImage = `            \\
              \\
               \\
                \\             ▒▒▒▒▒
@@ -25,46 +32,113 @@ const duckImage =
                            ▓▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒
 `;
 
-
-// If no arguments are supplied, exit and display suggested use
-if (process.argv.length <= 2) {
-  console.log('Error! Usage: ducksay <prompt for the duck>');
-  process.exit(-1);
+/**
+ * Parses input from CLI and makes sure it is a valid string.
+ * If "-h" or "--help" is provided, it displays usage information.
+ * @returns {string | null} The input from the command line or null if help is displayed.
+ */
+function handleAndValidateInput() {
+  const args = process.argv.slice(2);
+  // Make sure there is at least one argument and it is not the help flag
+  if (
+    process.argv.length <= 2 ||
+    args.includes("-h") ||
+    args.includes("--help")
+  ) {
+    console.warn(USAGE_STRING);
+    process.exit(1);
+  }
+  // Return arguments concatenated into a single string
+  return process.argv.slice(2).join(" ");
 }
 
-// Create string for requester from command line arguments. All arguments are
-// concatenated into one string with spaces in between, as was done in cowsay.
-let requestString = '';
-for (let i = 2; i < process.argv.length; i++) {
-  requestString += process.argv[i] + ' ';
+/**
+ * @param {string} question The question to ask the DuckDuckGo Instant Anwers API
+ * @returns {string} The result from the DuckDuckGo Instant Anwers API
+ */
+async function getInstantAnswersResponse(question) {
+  try {
+    const response = await fetch(
+      `${DUCKDUCKGO_API_URL}/?q=${encodeURIComponent(question)}&format=json`
+    );
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    const data = await response.json();
+    return (
+      data.AbstractText ||
+      `I don't know about that, can you reword your question?`
+    );
+  } catch (error) {
+    if (error instanceof SyntaxError) {
+      console.error("There was an error parsing the response.");
+    } else if (error.message.startsWith("HTTP error")) {
+      console.error(
+        "There was an error with the DuckDuckGo API service. You may be rate limited. Please try again later."
+      );
+    } else {
+      console.error(
+        "Failed to load data, your network connection may be unstable."
+      );
+    }
+    console.error(`Error: "${error.message}"`);
+    process.exit(1);
+  }
 }
 
-// Submit "requestString" to DuckDuckGo Instant, then handle results. Response 
-// text is printed via "cli-box" module, then the duck is printed.
-requester.request(requestString, (err, response, body) => {
-  if (err) {
-    console.log(err);
-    return;
-  }
+/**
+ * Prints the text in readable format for user
+ * @param {string} text The text to be printed in the box
+ * @returns {void} Prints the text in a box to the console
+ */
+function printBox(text) {
+  const terminalWidth = process.stdout.columns || 80; // Fallback to 80
+  const padding = 4; // Adjust for box borders and padding
+  const maxWidth = terminalWidth - padding;
 
-  // Assign "AbstractText" to answer. If empty/null assign to error message
-  let answer = JSON.parse(body)['AbstractText'];
-  if (answer === null || answer === '') {
-    answer = 'Sorry, don\'t know anything about that!'
-  }
+  const words = text.split(" ");
+  let lines = [];
+  let currentLine = "";
 
-  // create small message box which will expand with size of response
-  const messageBox = Box('2x2', {
-    text: answer,
-    stretch: true,
-    autoEOL: true,
-    vAlign: 'top',
-    hAlign: 'left'
+  // Make sure words aren't cut off when printing
+  words.forEach((word) => {
+    if ((currentLine + word).length < maxWidth) {
+      currentLine += `${word} `;
+    } else {
+      lines.push(currentLine.trim());
+      currentLine = `${word} `;
+    }
   });
 
-  // Print response, then duck
-  console.log(messageBox);
-  console.log(duckImage);
-});
+  // Push the last line if it has content
+  if (currentLine.trim().length > 0) {
+    lines.push(currentLine.trim());
+  }
 
+  const horizontalBorder = "─".repeat(maxWidth + 2);
+  console.log(`┌${horizontalBorder}┐`);
+  lines.forEach((line) => {
+    // Adjust line padding based on the dynamic width
+    console.log(`│ ${line.padEnd(maxWidth, " ")} │`);
+  });
+  console.log(`└${horizontalBorder}┘`);
+}
 
+/**
+ * Main function to run the program
+ * @returns {void} Prints the response from the DuckDuckGo Instant Anwers API
+ * and the duck image to the console
+ */
+async function main() {
+  try {
+    const input = handleAndValidateInput();
+    const response = await getInstantAnswersResponse(input);
+    printBox(response);
+    console.log(duckImage);
+  } catch (error) {
+    console.error(`Error: "${error}"`);
+    process.exit(1);
+  }
+}
+
+main();
